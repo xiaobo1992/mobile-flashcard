@@ -29,7 +29,25 @@ class Quiz extends Component {
   }
 
   componentWillMount() {
-    this.animatedValue = new Animated.Value(0)
+    this.init()
+  }
+
+  flipCard = () => {
+
+    this.setState({isQuestion: !this.state.isQuestion})
+    if (this.value > 90) {
+      Animated.timing(this.animatedValue, {
+        toValue: 0,
+      }).start()
+    } else {
+      Animated.timing(this.animatedValue, {
+        toValue: 180,
+      }).start()
+    }
+  }
+
+  init() {
+    this.animatedValue = new Animated.Value(0);
     this.value = 0;
     this.animatedValue.addListener(({value}) => {
       this.value = value;
@@ -49,28 +67,14 @@ class Quiz extends Component {
     )
   }
 
-
-
-  flipCard = () => {
-    this.setState({isQuestion: !this.state.isQuestion})
-    if (this.value > 90) {
-      Animated.timing(this.animatedValue, {
-        toValue: 0,
-      }).start()
-    } else {
-      Animated.timing(this.animatedValue, {
-        toValue: 180,
-      }).start()
-    }
-  }
-
   submit = (correct) => {
+    this.init()
     if (correct) {
       this.setState({correct:this.state.correct + 1})
     } else {
       this.setState({wrong:this.state.wrong + 1})
     }
-    this.setState({curr: this.state.curr + 1}, function() {
+    this.setState({curr: this.state.curr + 1, isQuestion: true}, function() {
       if (this.state.curr < this.state.questions.length) {
         this.getQuestion()
       } else {
@@ -119,17 +123,20 @@ class Quiz extends Component {
         {currentQuestion && !this.state.finished &&
           <View style={styles.container}>
             <Text style={styles.status}>{this.state.curr + 1}/{this.state.questions.length}</Text>
-
-
-            {this.state.isQuestion && <Animated.View style={[frontAnimatedStyle]}>
+            {this.state.isQuestion && <Animated.View style={[styles.flipcard, frontAnimatedStyle]}>
               <Text style={styles.question}>{currentQuestion.question}</Text>
             </Animated.View>}
-            {!this.state.isQuestion && <Animated.View style={[backAnimatedStyle]}>
+            {!this.state.isQuestion && <Animated.View style={[styles.flipcard, backAnimatedStyle]}>
               <Text style={styles.answer}>{currentQuestion.answer}</Text>
             </Animated.View>}
 
             <TouchableOpacity>
-              <Text style={styles.text} onPress={this.flipCard}>Answer</Text>
+              {this.state.isQuestion &&
+                <Text style={styles.text} onPress={this.flipCard}>Answer</Text>
+              }
+              {!this.state.isQuestion &&
+                <Text style={styles.text} onPress={this.flipCard}>Question</Text>
+              }
             </TouchableOpacity>
             <View style={styles.btn_group}>
               <TouchableOpacity onPress={()=>this.submit(true)}>
@@ -192,7 +199,6 @@ const styles = StyleSheet.create({
     height: '40%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
     borderWidth:2
   },
   question:{
