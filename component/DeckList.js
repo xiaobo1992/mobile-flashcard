@@ -18,7 +18,7 @@ class DeckList extends Component {
     let keys = Object.keys(decks)
     return(
       <ScrollView>
-        {!keys && keys.map(key =>
+        {keys.map(key =>
             <DeckItem  key={key} {...this.props} id={key}/>
         )}
       </ScrollView >
