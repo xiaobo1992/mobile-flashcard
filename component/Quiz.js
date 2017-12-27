@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Platform, TouchableOpacity, Button, Animated } 
 import {connect} from 'react-redux';
 import {getQuestion} from '../actions/QuestionActions'
 import {QUESTION_MODE, ANS_MODE, FINISH_MODE} from './string'
-import FlipCard from 'react-native-flip-card'
 import {clearLocalNotification, setLocalNotification} from '../utils/notification'
 class Quiz extends Component {
 
