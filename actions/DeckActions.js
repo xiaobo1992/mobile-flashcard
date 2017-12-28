@@ -43,6 +43,7 @@ export const getDeck = (id) => dispatch => {
 export const addNewDeck =  (title) => dispatch => {
   let id = API.addDeck(title)
   API.getDeck(id).then(deck => dispatch(addDeck(JSON.parse(deck))))
+  return id;
 }
 
 export const storeQuestion = (deck_id, question, answer) => dispatch => {

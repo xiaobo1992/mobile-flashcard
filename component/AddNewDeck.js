@@ -20,8 +20,9 @@ class AddNewDeck extends Component {
     if (!this.validate()) {
       return;
     }
-    this.props.addDeck(this.state.title)
+    let id = this.props.addDeck(this.state.title)
     this.setState({title : ""})
+    this.props.navigation.navigate('detail', {deck_id: id})
   }
 
   validate =() => {

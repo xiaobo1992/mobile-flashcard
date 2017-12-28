@@ -15,7 +15,7 @@ class DeckItem extends Component {
       }>
         <View style={styles.container}>
           <Text style={styles.text}>{deck.title}</Text>
-          <Text style={styles.text}>{deck.questions.length}</Text>
+          <Text style={styles.text}>{deck.questions && deck.questions.length}</Text>
         </View>
       </TouchableOpacity>
     )
