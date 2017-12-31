@@ -13,3 +13,10 @@ This Mobile FlashCards app is a self learnning app that allow user to ask questi
 * Install depedencies `npm install`
 * Run app `npm start` or `npm run android`
 * press `a` to run on android emulator and android device
+
+## Screenshot
+<img src="images/decks_android_framed.png" width="50%" height="50%"><img src="images/decks_ios.png" width="50%" height="50%">
+<img src="images/addquestion_android_framed.png" width="50%" height="50%"><img src="images/addquestion_ios.png" width="50%" height="50%">
+<img src="images/question_android_framed.png" width="50%" height="50%"><img src="images/question_ios.png" width="50%" height="50%">
+<img src="images/quiz_android_framed.png" width="50%" height="50%"><img src="images/quiz_ios.png" width="50%" height="50%">
+<img src="images/res_android_framed.png" width="50%" height="50%"><img src="images/res_ios.png" width="50%" height="50%">
